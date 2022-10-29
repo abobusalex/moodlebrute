@@ -1,0 +1,33 @@
+plugins {
+    id 'application'
+}
+
+group 'com.github.abobusalex'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    implementation 'com.squareup.okhttp3:mockwebserver:4.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application{
+    mainClass = 'com.github.abobusalex.Main'
+}
+
+tasks.named('jar') {
+    manifest {
+        attributes( 'Implementation-Title': project.name,
+                    'Implementation-Version': project.version,
+                    'Main-Class': application.mainClass)
+    }
+}
+
